@@ -64,33 +64,3 @@ lib/
   data.ts                 → placeholder data for every page
 ```
 
-## Where the backend plugs in
-
-Every page pulls its data from `lib/data.ts` (static arrays/functions) or
-from `AppSettingsContext` (in-memory React state). Neither persists —
-refreshing the page resets everything. The natural integration points:
-
-- **Auth / user session** — replace the hardcoded "Alex Rivera" in
-  `components/Sidebar.tsx` and the greeting in `lib/data.ts`
-  (`PAGE_COPY.dashboard`) with real session data.
-- **Per-page data** — each page (`app/(app)/*/page.tsx`) currently imports
-  static arrays from `lib/data.ts`. Swap those imports for `fetch` calls or
-  a data-fetching library (React Query, SWR) hitting your API.
-- **Settings** — `context/AppSettingsContext.tsx` currently holds
-  `unit`, `notifications`, and `integrations` in local React state. Once
-  there's a backend, this is where you'd load/save those from your API
-  instead of `useState`.
-- **Math you'll want to implement server-side** (referenced but not yet
-  computed): 1RM estimation (Epley formula, shown on the Workouts page),
-  macro/calorie targets, and progress trend calculations.
-
-## Notes
-
-- Colors use the CSS `oklch()` function directly (supported in all modern
-  browsers) rather than being converted to hex, so the palette matches the
-  original mockup exactly.
-- The theme picker in Settings (blue/green/orange) is fully wired up and
-  changes the accent color across the whole app — it's local state for now,
-  not persisted.
-- "Dark mode" in Settings is intentionally shown as disabled rather than a
-  toggle that does nothing, since it isn't implemented yet.
