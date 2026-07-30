@@ -1,4 +1,4 @@
-# Kynetiq — Frontend
+# Kynetiq  Frontend
 
 Next.js 14 (App Router) + TypeScript + Tailwind. This is the frontend only —
 all data on every page is placeholder data living in `lib/data.ts`, ready to
